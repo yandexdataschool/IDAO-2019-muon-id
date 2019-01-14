@@ -1,12 +1,17 @@
 CXXFLAGS = -std=c++17
 
 ifeq ($(DEBUG), 1)
-	CXXFLAGS += -g -O2 -p
+	CXXFLAGS += -g -O0 -p
 else
 	CXXFLAGS += -O2
 endif
 
-all: baseline compute_features
+all: build
+
+build: baseline
+
+run: baseline
+	./baseline
 
 baseline: baseline.cpp parser.cpp parser.h
 	$(CXX) $(CXXFLAGS) parser.cpp ripped_evaluator/evaluator.cpp \

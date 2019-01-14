@@ -4,10 +4,12 @@
 
 [`Baseline - advanced.ipynb`](https://github.com/yandexdataschool/IDAO-2018-muon-id/blob/master/Baseline%20-%20advanced.ipynb) contains a primer on jagged arrays processing and creates the model file for Track 2
 
-`track_2_baseline` contains an example submission for Track 2. Run `make
-all` to build and the `baseline` binary will be accepting data as
-`.csv` (not gzipped) at the standard input and writing predictions to
-the standard output.
+`track_2_baseline` contains an example submission for Track 2. Run
+`make all` to build and the `baseline` binary will be accepting data
+as `.csv` (not gzipped) at the standard input and writing predictions
+to the standard output. Run `make compute_features` to build an
+utility binary that preprocesses data and writes outputs the computed
+features.
 
 `scoring.py` contains an implementation of the quality metric
 
