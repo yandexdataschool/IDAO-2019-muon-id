@@ -8,7 +8,7 @@
 `make all` to build and the `baseline` binary will be accepting data
 as `.csv` (not gzipped) at the standard input and writing predictions
 to the standard output. Run `make compute_features` to build an
-utility binary that preprocesses data and writes outputs the computed
+utility binary that preprocesses data and outputs the computed
 features.
 
 `scoring.py` contains an implementation of the quality metric
