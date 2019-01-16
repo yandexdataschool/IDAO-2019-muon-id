@@ -1,3 +1,4 @@
+// Copyright 2019, Nikita Kazeev, Higher School of Economics
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -5,7 +6,7 @@
 #include <vector>
 #include <limits>
 
-#include "parser.h"
+#include "./parser.h"
 #include "ripped_evaluator/evaluator.h"
 
 int main() {
@@ -17,13 +18,13 @@ int main() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cout << std::setprecision(std::numeric_limits<float>::max_digits10);
     std::cout << "id,prediction\n";
-    std::vector<float> features(N_FEATURES);
     while (std::cin.good() && std::cin.peek() != EOF) {
-	size_t id;
-	ugly_hardcoded_parse(std::cin, &id, &features);
-	const float prediction = \
-	    evaluator.Apply(features, NCatboostStandalone::EPredictionType::RawValue);
-	std::cout << id << DELIMITER << prediction  << '\n';
+	std::vector<float> features(N_FEATURES);
+        size_t id;
+        ugly_hardcoded_parse(std::cin, &id, &features);
+        const float prediction = \
+            evaluator.Apply(features, NCatboostStandalone::EPredictionType::RawValue);
+        std::cout << id << DELIMITER << prediction  << '\n';
     }
     return 0;
 }

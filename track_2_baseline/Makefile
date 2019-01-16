@@ -1,4 +1,4 @@
-CXXFLAGS = -std=c++17
+CXXFLAGS = -std=c++17 -Wall -Werror
 
 ifeq ($(DEBUG), 1)
 	CXXFLAGS += -g -O0 -p

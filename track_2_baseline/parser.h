@@ -1,3 +1,4 @@
+// Copyright 2019, Nikita Kazeev, Higher School of Economics
 #pragma once
 #include <ctype.h>
 #include <cstdint>
@@ -10,6 +11,8 @@
 
 const size_t N_STATIONS = 4;
 const size_t FOI_FEATURES_PER_STATION = 6;
+// The structure of .csv is the following:
+// id, <62 float features>, number of hits in FOI, <9 arrays of FOI hits features>, <2 float features>
 const size_t N_RAW_FEATURES = 65;
 const size_t N_RAW_FEATURES_TAIL = 2;
 const size_t FOI_HITS_N_INDEX = 62;
