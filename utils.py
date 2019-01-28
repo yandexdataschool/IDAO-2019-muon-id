@@ -38,21 +38,22 @@ EMPTY_FILLER = 1000
 
 # Examples on working with the provided files in different ways
 
+VERSION = "v2"
 # hdf is all fine - but it requires unpickling the numpy arrays
 # which is not guranteed
 def load_train_hdf(path):
     return pd.concat([
-        pd.read_hdf(os.path.join(path, "train_part_%i.hdf" % i))
+        pd.read_hdf(os.path.join(path, "train_part_%i_%s.hdf" % (i, VERSION)))
         for i in (1, 2)], axis=0, ignore_index=True)
 
 
 def load_data_csv(path, feature_columns):
     train = pd.concat([
-        pd.read_csv(os.path.join(path, "train_part_%i.csv.gz" % i),
+        pd.read_csv(os.path.join(path, "train_part_%i_%s.csv.gz" % (i, VERSION)),
                     usecols= [ID_COLUMN] + feature_columns + TRAIN_COLUMNS,
                     index_col=ID_COLUMN)
         for i in (1, 2)], axis=0, ignore_index=True)
-    test = pd.read_csv(os.path.join(path, "test_public.csv.gz"),
+    test = pd.read_csv(os.path.join(path, "test_public_%s.csv.gz" % VERSION),
                        usecols=[ID_COLUMN] + feature_columns, index_col=ID_COLUMN)
     return train, test
 
@@ -64,7 +65,7 @@ def parse_array(line, dtype=np.float32):
 def load_full_test_csv(path):
     converters = dict(zip(FOI_COLUMNS, repeat(parse_array)))
     types = dict(zip(SIMPLE_FEATURE_COLUMNS, repeat(np.float32)))
-    test = pd.read_csv(os.path.join(path, "test_public.csv.gz"),
+    test = pd.read_csv(os.path.join(path, "test_public_%s.csv.gz" % VERSION),
                        index_col="id", converters=converters,
                        dtype=types,
                        usecols=[ID_COLUMN]+SIMPLE_FEATURE_COLUMNS+FOI_COLUMNS)
